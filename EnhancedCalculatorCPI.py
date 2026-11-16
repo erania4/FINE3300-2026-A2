@@ -6,7 +6,7 @@
 import pandas as pd
     # Importing Pandas.
 
-cpi_data = pd.read_csv("C:/Users/erani/Downloads/STATIC_INFLATIONCALC.csv", skiprows=8)
+cpi_data = pd.read_csv("BankofCanadaFile.csv", skiprows=8)
     # Reading the CSV file using Pandas. Skipping the first 8 rows to avoid unnecessary/unformated data.
 
 cpi_data['date'] = pd.to_datetime(cpi_data['date'])
