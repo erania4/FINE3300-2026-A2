@@ -8,6 +8,7 @@ import pandas as pd
 
 cpi_data = pd.read_csv("BankofCanadaFile.csv", skiprows=8)
     # Reading the CSV file using Pandas. Skipping the first 8 rows to avoid unnecessary/unformated data.
+    # For the code to run, the file and code need to be in the same open folder. Alternatively, users can download and input the file themselves.
 cpi_data = cpi_data.rename(columns={'STATIC_INFLATIONCALC':'cpi'})
     # Renaming column in the name of understandability and consistency.
 
