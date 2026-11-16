@@ -7,6 +7,9 @@ Keep in mind, as you go through the code and files, that currencies are in Canad
 **IMPORTANT USER NOTE: Keep the BankofCanadaFile.csv in the same folder as the time series and calculator Python codes/scripts when using them. Make sure to run the code from the folder with all of the files together. Otherwise, the data file might not be found.**
 
 I hope you are able to learn from my code, or even possibly enjoy using it. For example, maybe you want to find out how much more you are paying for your McDonald's Big Mac today, comapred to 50 years ago! Who am I kidding? No one would get any value out of that... right?
+
+Repository URL: https://github.com/erania4/FINE3300-2026-A2.git
+
 ## Time Series Figure - Part One
 This was the first part of the assignment. It required me to create a dual axis time series graph, plotting the CPI level and its percentage change on an annual basis over time.
 ### Reading and Understanding
