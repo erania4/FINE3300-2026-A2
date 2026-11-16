@@ -42,7 +42,7 @@ def inflation_calculator (cost1, cpi1, cpi2, date1, date2):
     percent_change = (cost2-cost1)/cost1 * 100
 
     print(100*'-')
-    print('A "basket" of goods and services that cost ${:,.2f} in {}, would cost ${:,.2f} in {}!'.format(cost1, date1.strftime("%B %Y"), cost2, date2.strftime("%B %Y")))
+    print('A "basket" of goods and services that cost ${:,.2f} (CAD) in {}, would cost ${:,.2f} (CAD) in {}!'.format(cost1, date1.strftime("%B %Y"), cost2, date2.strftime("%B %Y")))
     print('The percent change totalled: {:,.2f}%.'.format(percent_change))
 
 
