@@ -8,6 +8,8 @@ import pandas as pd
 
 cpi_data = pd.read_csv("BankofCanadaFile.csv", skiprows=8)
     # Reading the CSV file using Pandas. Skipping the first 8 rows to avoid unnecessary/unformated data.
+cpi_data = cpi_data.rename(columns={'STATIC_INFLATIONCALC':'cpi'})
+    # Renaming column in the name of understandability and consistency.
 
 cpi_data['date'] = pd.to_datetime(cpi_data['date'])
     # Changing the type of the data in the 'date' column to datetime. 
@@ -24,7 +26,9 @@ def cpi_value (date):
     # Only using one function, referencing it for each of the two dates required in the calculations.
    
     else:
-        print('The date(s) that you inputted is/are not within the available range. Only dates between 1914-01 and 2026-09 are accepted. Please try again.')
+        print(60*'-')
+        print('The date that you inputted is not within the available range.\nOnly dates between 1914-01 and 2026-09 are accepted.\nTo avoid an error, re-run the code with dates that are in the functional range.')
+        print(60*'-')
         return None
     
     # The 'if' statement ensures that the dates are within range. Otherwise, it prints the statement above.
@@ -37,7 +41,7 @@ def inflation_calculator (cost1, cpi1, cpi2, date1, date2):
     cost2 = cost1 * (cpi2/cpi1)
     percent_change = (cost2-cost1)/cost1 * 100
 
-    print(20*'-')
+    print(100*'-')
     print('A "basket" of goods and services that cost ${:,.2f} in {}, would cost ${:,.2f} in {}!'.format(cost1, date1.strftime("%B %Y"), cost2, date2.strftime("%B %Y")))
     print('The percent change totalled: {:,.2f}%.'.format(percent_change))
 
@@ -45,19 +49,19 @@ def inflation_calculator (cost1, cpi1, cpi2, date1, date2):
     if date1 != date2:
         time_elapsed = date2-date1
         number_of_years = time_elapsed/pd.Timedelta(days=365.2425)
-        average_annual_inflation = ((percent_change/100+1)**(1/number_of_years)-1) * 100
+        average_annual_inflation = ((percent_change/100+1)**(1/abs(number_of_years))-1) * 100
 
         print('This is equal to a rate of {:,.2f}%, compounded annually over {:,.0f} years.'.format(average_annual_inflation, abs(number_of_years)))
         print('The CPI for {} is {:,.1f}, while the CPI for {} is {:,.1f}.'.format(date1.strftime("%B %Y"),cpi1, date2.strftime("%B %Y"), cpi2))
-        print(20*'-')
+        print(100*'-')
         return cost2
 
         # Above lies all of the main calculations with their user outputs.
     
     else:
-        print(20*'-')
-        print('The dates inputted are equal. The cost at the first date is equal to the cost at the second date. The percentage change is 0%.')
-        print(20*'-')
+        print(100*'-')
+        print('The dates inputted are equal. The cost at the first date is equal to the cost at the second date.\nThe percentage change is 0%.')
+        print(100*'-')
         return None
 
         # If the dates provided are equal, a special message will be delivered explaining such.
@@ -69,6 +73,9 @@ cpi1 = cpi_value(date1)
 date2 = pd.to_datetime(input('Enter the second date (YYYY-MM): ').strip(), format='%Y-%m')
 cpi2 = cpi_value(date2)
 
-cost1 = float(input('Enter the cost of the "basket" at the first date (with no formatting): '))
+cost1 = float(input('Enter the cost of the "basket" at the first date (with no formatting): ').replace('$','').replace(',',''))
     # cost1, cpi1, cpi2, date1 and date2 all work in the inflation_calculator function. They are defined here when inputted.
-    # Certain formatting adjustments are used to help here. Formatting advice is also explicitly stated.
+    # Certain formatting adjustments are used to help validate the code. Formatting advice is also explicitly stated.
+
+initiate_calculations = inflation_calculator(cost1, cpi1, cpi2, date1, date2)
+    # Used to call on function; performs calculations and prints results.
